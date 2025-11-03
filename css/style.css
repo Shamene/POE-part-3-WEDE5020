@@ -1,0 +1,471 @@
+/* =======================================================
+   GLOBAL RESET AND BASIC STYLES
+   -------------------------------------------------------
+   This section removes default browser spacing so that
+   the design looks the same across all devices.
+   It also sets up a clean, simple base font and color.
+========================================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+  background-color: #fff;
+  line-height: 1.6;
+}
+
+/* =======================================================
+   HEADER AND NAVIGATION BAR
+========================================================= */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: rgba(0, 3, 24, 0.95);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* --- LOGO + TITLE SECTION --- */
+.logo {
+  display: flex;               /* Places image and text in one line */
+  align-items: center;         /* Centers them vertically */
+  gap: 15px;                   /* Space between logo and text */
+}
+
+.logo img {
+  height: 60px;                /* Keeps logo nicely sized */
+}
+
+.site-title {
+  background: linear-gradient(45deg, #b8860b, #ffd700, #b8860b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-shadow: 0px 1px 3px rgba(0,0,0,0.4);
+}
+
+
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links li {
+  margin: 0 15px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links .active {
+  color: gold;
+}
+
+.hamburger {
+  display: none;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* =======================================================
+   MOBILE NAVIGATION MENU
+========================================================= */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: rgba(0, 3, 24, 0.95);
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links.open {
+    display: block;
+  }
+
+  .nav-links li {
+    margin: 15px 0;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+/* =======================================================
+   HERO SECTIONS (Base setup)
+========================================================= */
+.hero {
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* Adds a dark overlay for readability */
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+}
+
+.hero-overlay h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: gold;
+}
+
+.hero-overlay p {
+  font-size: 1.2rem;
+}
+
+/* =======================================================
+   SECTION TITLES
+========================================================= */
+section h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #001f3f;
+  margin: 40px 0 20px;
+  border-bottom: 2px solid gold;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* =======================================================
+   PRODUCTS AND CATEGORIES GRID
+========================================================= */
+.product-grid,
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 20px 40px;
+}
+
+.product-card,
+.category-card {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover,
+.category-card:hover {
+  transform: translateY(-6px);
+}
+
+.product-card img,
+.category-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.product-card h3 {
+  font-size: 1.2rem;
+  color: #001f3f;
+}
+
+.price {
+  font-weight: bold;
+  color: goldenrod;
+  margin-top: 5px;
+}
+
+/* =======================================================
+   GALLERY GRID AND LIGHTBOX
+========================================================= */
+.gallery {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.gallery-item {
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* ---------- Lightbox Popup ---------- */
+#lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.8);
+  z-index: 999;
+}
+
+#lightbox.active { display: flex; }
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border: 5px solid #fff;
+  border-radius: 8px;
+}
+
+/* =======================================================
+   FORMS (CONTACT & ENQUIRY)
+========================================================= */
+form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  max-width: 700px;
+  margin: 30px auto;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  color: #001f3f;
+  margin-bottom: 6px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  font-size: 1rem;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: gold;
+}
+
+button {
+  background: gold;
+  color: #001f3f;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #f0c420;
+}
+
+/* =======================================================
+   INTERIOR ROOM GALLERY
+========================================================= */
+.room-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin: 20px;
+}
+
+.room-gallery img {
+  width: 220px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.room-gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* =======================================================
+   FOOTER
+========================================================= */
+footer {
+  text-align: center;
+  background-color: #001f3f;
+  color: #8b6508;
+  padding: 25px 20px;
+  margin-top: 50px;
+}
+
+footer .slogan {
+  font-style: italic;
+  font-size: 1.2rem;
+  color: gold;
+  margin-bottom: 15px;
+}
+
+footer .socials img {
+  width: 32px;
+  margin: 0 8px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease;
+}
+
+footer .socials img:hover {
+  transform: scale(1.2);
+  filter: none;
+}
+
+/* =======================================================
+   MAP SECTION (CONTACT PAGE)
+========================================================= */
+#map {
+  width: 100%;
+  height: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 900px;
+}
+
+.map-section {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.map-section h2 {
+  color: #001f3f;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  border-bottom: 2px solid gold;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.map-section p {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* =======================================================
+   PAGE HERO BACKGROUNDS (NEW SECTION)
+   -------------------------------------------------------
+   Each page gets its own large image banner at the top.
+   Replace image file names as needed.
+========================================================= */
+
+/* Home Page Hero */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  background: url('../_images/index_2.jpg') no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hero Section */
+.hero {
+  height: 70vh;
+  background: url("../_images/index_7.jpg") no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+
+/* Products Page Hero */
+.hero {
+  background: url("../_images/index_3.jpg") no-repeat center center/cover;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Gallery Page Hero */
+.hero {
+  background: url("../_images/index_7.jpg") no-repeat center center/cover;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+/* Contact Page Hero */
+.hero {
+  background: url("../_images/index_5.jpg") no-repeat center center/cover;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* =======================================================
+   RESPONSIVE ADJUSTMENTS
+========================================================= */
+@media (max-width: 768px) {
+  .hero-overlay h1 { font-size: 2.2rem; }
+  .hero-overlay p { font-size: 1rem; }
+  section h2 { font-size: 1.6rem; }
+  .product-card img,
+  .category-card img { height: 180px; }
+  form { padding: 20px; }
+}

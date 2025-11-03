@@ -1,0 +1,8 @@
+# robots.txt for Afri Furniture & Interior
+# This file tells search engines which pages they are allowed to index.
+
+User-agent: *          # The * means "all search engines"
+Allow: /               # Allow all pages to be crawled
+
+# Point to your sitemap so search engines can find it easily
+Sitemap: https://www.afrifurniture.co.za/sitemap.xml
